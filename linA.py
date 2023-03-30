@@ -1,7 +1,7 @@
 # parameters
 ID = "LIN"
 r = 0.1 # radius of loop in units of g/h - Bohr?
-step = 0.5 # Step size/pi in radians
+step = 1 # Step size/pi in radians
 direc = "12CI"
 parallel = False
 
@@ -135,12 +135,23 @@ date""".format(name=ID+directory))
 
 # function to write geometry
 def write_geom(directory):
-    theta = step*target/np.pi
+    target = int(directory)
+    theta = step*target*np.pi
+    print("Theta = " + str(theta))
     currgeom = O + r*np.cos(theta)*x + r*np.sin(theta)*y
     g = open(directory + '/geom', "w")
-    g.write("")
+    atom_number = 0
+    for atom in cart_data:
+        g.write(" " + atom[0]
+                + format(float(atom[1]), "8.1f")
+                + format(float(currgeom[atom_number]), "14.8f")
+                + format(float(currgeom[atom_number + 1]), "14.8f")
+                + format(float(currgeom[atom_number + 2]), "14.8f")
+                + format(float(atom[5]), "14.8f")
+                + "\n")
+        atom_number += 3
     g.close()
-ajklfda;kl
+
 # run COLUMBUS for each step
 def slurmcop(target):
     str_target = str(target)
