@@ -1,9 +1,9 @@
 # parameters
 ID = "LST"
-step = 0.5 # Step size
+step = 0.04 # Step size
 init_cart_name = "0/geom" # Path of initial Cartesian geometry file
 final_cart_name = "geom" # Name of final Cartesian geometry file
-parallel = False
+parallel = True
 
 # module import
 import numpy as np
