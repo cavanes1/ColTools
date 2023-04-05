@@ -6,7 +6,7 @@ statef = 2
 r = 0.1 # radius of loop in units of g/h - Bohr?
 step = 1 # Step size/pi in radians
 direc = "12CI" # x and y vectors are obtained using this
-choseniter = 45 # choice code, NOT iteration!
+choseniter = 54 # choice code, NOT iteration!
 
 # module import
 import numpy as np
@@ -111,11 +111,12 @@ print(nadvecs)
 
 # input sign flips
 corrected_nadvecs = []
+count = 1
 for dercp in nadvecs:
     updated = dercp
     print("\nRaw f:")
     print(dercp)
-    flip = input("\nMultiply derivative coupling by (enter 1 or -1): ")
+    flip = input("\n" + str(count) + " - Multiply derivative coupling by (enter 1 or -1): ")
     if flip == "1":
         print("Leaving unchanged")
     elif flip == "-1":
@@ -126,6 +127,7 @@ for dercp in nadvecs:
     print("\nUpdated f:")
     print(updated)
     corrected_nadvecs.append(updated)
+    count += 1
 print("\nCorrected cartgrd.nad data together:")
 print(corrected_nadvecs)
 
