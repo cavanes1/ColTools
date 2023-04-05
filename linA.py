@@ -3,7 +3,7 @@ ID = "LIN"
 r = 0.1 # radius of loop in units of g/h - Bohr?
 step = 1 # Step size/pi in radians
 direc = "12CI"
-parallel = False
+parallel = True
 
 # module import
 import numpy as np
