@@ -18,5 +18,10 @@ Resubmits jobs for all directories using the settings of a single directory. One
 Performs a circular loop integral of the derivative coupling.
 The code is divided into two parts, linA.py and linB.py.
 linA.py generates the points and runs jobs for them, whereas linB.py extracts and analyzes the resulting data after the calculations complete.
+
+### linA.py
+Only the directory with the conical intersection search is required (and also linA.py). However, it is important to perform COLUMBUS input for nadcoupl.
+
+### linB.py
 A value of pi indicates a conical intersection (or an odd number in the loop) whereas a value of zero indicates a lack thereof (or an even number).
 16 points should give 3.14, 8 points should give 3.
