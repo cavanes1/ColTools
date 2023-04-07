@@ -21,6 +21,7 @@ linA.py generates the points and runs jobs for them, whereas linB.py extracts an
 
 ### linA.py
 Only the directory with the conical intersection search is required (and also linA.py). However, it is important to perform COLUMBUS input for nadcoupl.
+Molecular orbital coefficients are grabbed from MOCOEF/mocoef_mc.sp, so if a single point calculation was not performed with the directory, it may be a good idea to place the coefficients as "mocoef" directly in the directory and then comment out this part of the code.
 
 ### linB.py
 A value of pi indicates a conical intersection (or an odd number in the loop) whereas a value of zero indicates a lack thereof (or an even number).
