@@ -171,7 +171,6 @@ print("Cartesian geometry files read")
 g1data = []
 for line in new1:
     g1data.append(line.split())
-g1data = np.array(init_cart_data)
 g1ncart = []
 for atom in g1data:
     g1ncart.append(float(atom[2])) # x coordinate
@@ -181,7 +180,6 @@ g1ncart = np.array(g1ncart)
 g2data = []
 for line in new2:
     g2data.append(line.split())
-g2data = np.array(final_cart_data)
 g2ncart = []
 for atom in g2data:
     g2ncart.append(float(atom[2])) # x coordinate
