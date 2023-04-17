@@ -3,6 +3,9 @@ This is a set of codes that work for any molecule while using COLUMBUS.
 
 ## Conical intersection search
 
+### enerview.py
+Prints information from energy.all in a format that is easier to interpret. Energy differences are shown in wavenumbers.
+
 ### 2low.py
 Searches for the lowest energy CI search iteration for each subdirectory and compares by energy while providing additional information.
 
