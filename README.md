@@ -1,6 +1,17 @@
 # ColTools
 This is a set of codes that work for any molecule while using COLUMBUS.
 
+## Curve plots
+
+### extractenergies.py
+Extracts MCSCF energies and number of iterations to convergence from each subdirectory of the current directory.
+
+### CIEE.py
+Extracts MRCI energies and number of iterations to convergence from each subdirectory of the current directory.
+
+### MCSCF.ipynb
+Example Jupyter notebook that generates a potential energy curve from extracted energy file.
+
 ## Conical intersection search
 
 ### enerview.py
