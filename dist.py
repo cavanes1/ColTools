@@ -208,5 +208,9 @@ print("\nGeometry difference vector for internal coordinates:")
 print(intdiff)
 for coordinate in range(len(intdiff)):
     print("Coordinate " + str(coordinate + 1) + ": " + str(intdiff[coordinate]))
+normed = intdiff/np.linalg.norm(intdiff)
+print("\nNormalized geometry difference vector for internal coordinates:")
+for coordinate in range(len(normed)):
+    print("Coordinate " + str(coordinate + 1) + ": " + str(normed[coordinate]))
 intdist = np.linalg.norm(intdiff)
 print("Distance = " + str(intdist) + " (unknown units)")
