@@ -46,7 +46,12 @@ Molecular orbital coefficients are grabbed from MOCOEF/mocoef_mc.sp, so if a sin
 A value of pi indicates a conical intersection (or an odd number in the loop) whereas a value of zero indicates a lack thereof (or an even number).
 16 points should give 3.14, 8 points should give 3.
 
-## dist.py
+## Geometry analysis
+
+### geomprint.py
+Prints the geometry of a point in Cartesian and intc.x-generated internal coordinates in Python list format.
+
+### dist.py
 This tool calculates the distance between two given geometries in three ways:
 1. Cartesian distance of raw input geometry files
 2. Cartesian distance such that the second geometry is moved to match the relative position of the first
@@ -54,3 +59,7 @@ This tool calculates the distance between two given geometries in three ways:
    - Also provides the normalized internal coordinate vector between the geometries
 
 All distances are the 2-norm.
+
+### point line distance.ipynb
+Calculates the shortest distance in 2-norm between a point from the line generated from two other points.
+Also yields the point on the line closest to the given point not on the line.
