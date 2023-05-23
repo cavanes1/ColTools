@@ -63,3 +63,6 @@ All distances are the 2-norm.
 ### point line distance.ipynb
 Calculates the shortest distance in 2-norm between a point from the line generated from two other points.
 Also yields the point on the line closest to the given point not on the line.
+
+## surfextractor.pl
+Extracts the necessary data for Surfgen.
