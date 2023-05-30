@@ -69,3 +69,7 @@ Also yields the point on the line closest to the given point not on the line.
 
 ## surfextractor.pl
 Extracts the necessary data for Surfgen.
+
+## geomkick.py
+Takes an input file of internal coordinates and makes copies of a chosen directory with the geometry replaced with those in the input file.
+The last line of the input file must be "END".
