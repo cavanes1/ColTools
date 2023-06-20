@@ -67,6 +67,9 @@ All distances are the 2-norm.
 Calculates the shortest distance in 2-norm between a point from the line generated from two other points.
 Also yields the point on the line closest to the given point not on the line.
 
+## gradcomp.py
+Compares gradients and nonadiabatic couplings between two ab initio calculated points.
+
 ## surfextractor.pl
 Extracts the necessary data for Surfgen.
 
