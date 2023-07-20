@@ -59,8 +59,8 @@ if (!-d "$PDIR") {
     die "$PDIR does not exist!\n";
 }
 
-# Check to see if mcscf converged. **Assuming output is: runc.log**
-my $test = `grep converged runc.log`;
+# Check to see if mcscf converged. **Assuming output is: runls (previously runc.log)**
+my $test = `grep converged runls`;
 if ($test ne "") {
     die "MCSCF not converged.";
 }
@@ -123,7 +123,7 @@ for (my $i = 1; $i <= $nst; $i++) {
 	open (CRTCP, "$GDIR/cartgrd.nad.drt1.state$i.drt1.state$j.sp");
 	@cp = grep(/\n/i, <CRTCP>);
 	close(CRTCP);
-	open (NADS, ">>$PDIR/cartgrd_total.drt1.state$i.drt1.state$j.all");
+	open (NADS, ">>$PDIR/cartgrd.nad.drt1.state$i.drt1.state$j.all");
 	print NADS @cp;
 	close(NADS);
     }
