@@ -33,6 +33,7 @@
 # MAIN ---------------------------------------------------------------
 use strict;
 use warnings;
+use Cwd;
 
 my $JDIR = "./";
 my $GDIR = "./GRADIENTS";
@@ -42,14 +43,17 @@ my $LDIR = "./LISTINGS";
 
 # Process command line arguments. Set number of states and name of
 # the project directory.
-my $argc = $#ARGV + 1;
-if ($argc != 3) {
-    print "\nUsage: surf_calc.pl [nstates] [dir name] [dipole?]\n";
-    die   "Incorrect number of input arguments.\n";
-}
-my $nst = $ARGV[0];
-my $PDIR= "../$ARGV[1]";
-my $dpc = $ARGV[2];
+#my $argc = $#ARGV + 1;
+#if ($argc != 3) {
+#    print "\nUsage: surf_calc.pl [nstates] [dir name] [dipole?]\n";
+#    die   "Incorrect number of input arguments.\n";
+#}
+#my $nst = $ARGV[0];
+#my $PDIR= "../$ARGV[1]";
+#my $dpc = $ARGV[2];
+my $nst = "5";
+my $PDIR= "../DATAOUT";
+my $dpc = "y";
 
 # Print current directory
 system("pwd");
@@ -201,6 +205,19 @@ for (my $i = $firstline; $i <= $firstline + $nst - 1; $i++) {
         close(ENGSL);
     }
 }
+#name
+my @nm;
+open (NAM, "$PDIR/names.all");
+@nm = grep(/\n/i, <NAM>);
+close(NAM);
+my $currline = @nm + 1;
+my $currdir = getcwd();
+my @splitted = split('/', $currdir);
+my $name = $splitted[-1];
+open (NAMES, ">>$PDIR/names.all");
+printf NAMES "%5s", "$currline";
+print NAMES "   $name\n";
+close(NAMES);
 
 #---------------------------------------------------------------------
 
