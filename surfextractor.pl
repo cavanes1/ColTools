@@ -90,6 +90,9 @@ for (my $i = 1; $i <= $nst; $i++) {
 if (!-e "$LDIR/energy") {
     die "$LDIR/energy does not exist!\n";
 }
+if (!-e "$LDIR/ciudgsm.sp") {
+    die "$LDIR/ciudgsm.sp does not exist!\n";
+}
 
 # Make ./DATA directory. Copy all files here. Append contents of all
 # files to $PDIR/.
@@ -158,13 +161,44 @@ for (my $i = 1; $i <= $nst; $i++) {
     my $enrg = 0;
     $enrg = substr($en[$i], 12, 14);
     if ($i < $nst) {
-	open (ENGS, ">>$PDIR/energy.all");
+	open (ENGS, ">>$PDIR/oldenergy.all");
 	print ENGS "$enrg ";
 	close(ENGS);
     } else {
-	open (ENGS, ">>$PDIR/energy.all");
+	open (ENGS, ">>$PDIR/oldenergy.all");
 	print ENGS "$enrg\n";
 	close(ENGS);
+    }
+}
+my @enl;
+open (ENRGL, "$LDIR/ciudgsm.sp");
+@enl = grep(/\n/i, <ENRGL>);
+close(ENRGL);
+my $firstline;
+my $firsttime;
+$firstline = 0;
+$firsttime = 0;
+for (my $i = 1; $i <= @enl - 1; $i++) {
+    if (index($enl[$i], "final") != -1) {
+        if ($firsttime == 0) {
+            $firsttime = 1;
+	} elsif ($firsttime == 1) {
+	    $firsttime = 2;
+	    $firstline = $i + 1
+	}
+    }
+}
+for (my $i = $firstline; $i <= $firstline + $nst - 1; $i++) {
+    my $enrg = 0;
+    $enrg = substr($enl[$i], 19, 16);
+    if ($i < $firstline + $nst - 1) {
+        open (ENGSL, ">>$PDIR/energy.all");
+        print ENGSL "$enrg ";
+        close(ENGSL);
+    } else {
+        open (ENGSL, ">>$PDIR/energy.all");
+        print ENGSL "$enrg\n";
+        close(ENGSL);
     }
 }
 
