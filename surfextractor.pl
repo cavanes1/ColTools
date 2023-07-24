@@ -52,7 +52,7 @@ my $LDIR = "./LISTINGS";
 #my $PDIR= "../$ARGV[1]";
 #my $dpc = $ARGV[2];
 my $nst = "5";
-my $PDIR= "../DATAOUT";
+my $PDIR= "../../DATAOUT";
 my $dpc = "y";
 
 # Print current directory
