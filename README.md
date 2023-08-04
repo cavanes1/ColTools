@@ -70,9 +70,15 @@ Also yields the point on the line closest to the given point not on the line.
 ## gradcomp.py
 Compares gradients and nonadiabatic couplings between two ab initio calculated points.
 
-## surfextractor.pl
-Extracts the necessary data for Surfgen.
-
 ## geomkick.py
 Takes an input file of internal coordinates and makes copies of a chosen directory with the geometry replaced with those in the input file.
 The last line of the input file must be "END".
+
+## Surfgen tools
+
+### surfextractor.pl
+Extracts the necessary data for Surfgen.
+
+### points.py
+Identifies quasidegeneracies from energy.all to generate points.in.
+Designed with SurfgenBound 2023 in mind.
