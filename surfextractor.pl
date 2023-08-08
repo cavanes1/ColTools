@@ -178,31 +178,20 @@ my @enl;
 open (ENRGL, "$LDIR/ciudgsm.sp");
 @enl = grep(/\n/i, <ENRGL>);
 close(ENRGL);
-my $firstline;
-my $firsttime;
-$firstline = 0;
-$firsttime = 0;
+my $currst = 1;
 for (my $i = 1; $i <= @enl - 1; $i++) {
-    if (index($enl[$i], "final") != -1) {
-        if ($firsttime == 0) {
-            $firsttime = 1;
-	} elsif ($firsttime == 1) {
-	    $firsttime = 2;
-	    $firstline = $i + 1
-	}
-    }
-}
-for (my $i = $firstline; $i <= $firstline + $nst - 1; $i++) {
-    my $enrg = 0;
-    $enrg = substr($enl[$i], 19, 16);
-    if ($i < $firstline + $nst - 1) {
-        open (ENGSL, ">>$PDIR/energy.all");
-        print ENGSL "$enrg ";
-        close(ENGSL);
-    } else {
-        open (ENGSL, ">>$PDIR/energy.all");
-        print ENGSL "$enrg\n";
-        close(ENGSL);
+    if (index($enl[$i], "eci  ") != -1) {
+	my $enrg = 0;
+        $enrg = substr($enl[$i], 15, 18);
+        if ($currst++ < $nst) {
+            open (ENGSL, ">>$PDIR/energy.all");
+            print ENGSL "$enrg ";
+            close(ENGSL);
+        } else {
+            open (ENGSL, ">>$PDIR/energy.all");
+            print ENGSL "$enrg\n";
+            close(ENGSL);
+        }
     }
 }
 #name
