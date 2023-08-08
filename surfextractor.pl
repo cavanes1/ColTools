@@ -112,6 +112,7 @@ close(GEOM);
 system("cp ./geom $DDIR/geom.all");
 system("cp $GDIR/cartgrd*sp $DDIR/");
 system("cp $LDIR/energy $DDIR/");
+system("cp $LDIR/ciudgsm.sp $DDIR/");
 if ($dpc eq "y") {
     system("cp $LDIR/trncils* $DDIR/");
     system("cp $LDIR/propls.ci* $DDIR/");
