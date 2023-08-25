@@ -82,3 +82,6 @@ Extracts the necessary data for Surfgen.
 ### points.py
 Identifies quasidegeneracies from energy.all to generate points.in.
 Designed with SurfgenBound 2023 in mind.
+
+### autosort.py
+Reorders the geometries used by Surfgen according to either an input list of names or automatically by absolute energy error.
