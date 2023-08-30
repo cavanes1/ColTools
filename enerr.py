@@ -163,8 +163,8 @@ for point in range(npoints):
     for k in range(nstates-1):
         for l in range(k + 1, nstates):
             statepair += 1
-            inc_cp += 1
             if (abinitEs[l][point] - abinitEs[k][point]) >= degencutoff:
+                inc_cp += 1
                 #de1 = max(abs(abinitEs[k][point]-abinitEs[l][point]),1e-5)
                 #de2 = max(abs(surfEs[k][point]-surfEs[l][point]),1e-5)
                 #dcp = dot_product(dispgeoms(j)%grads(:nvpt,k,l)/de1-fitG(j,:nvpt,k,l)/de2,
