@@ -1,7 +1,4 @@
-# parameters
-nstates = 5
-natoms = 6
-npoints = 7
+# parameter
 degencutoff = 350 # cm-1
 
 # import modules
@@ -11,6 +8,34 @@ from os.path import isfile, join
 import os
 
 # read files
+# parameters
+npoints = 0
+enfDiab = 0
+eshift = 0
+natoms = 0
+nstates = 0
+h = open("fit.in", "r")
+fitin = h.readlines()
+h.close()
+enfDiab = 0
+natoms = 0
+for param in fitin:
+    if "npoints" in param:
+        npoints = int(param.split()[-1][:-1])
+    elif "enfDiab" in param:
+        enfDiab = int(param.split()[-1][:-1])
+    elif "eshift" in param:
+        eshift = float(param.split()[-1][:-3])
+    elif "natoms" in param:
+        natoms = int(param.split()[-1])
+    elif "nstates" in param:
+        nstates = int(param.split()[-1])
+print("npoints = " + str(npoints))
+print("enfDiab = " + str(enfDiab))
+print("eshift  = " + str(eshift))
+print("natoms  = " + str(natoms))
+print("nstates = " + str(nstates))
+
 # names
 f = open("names.all", "r")
 namefile = f.readlines()
@@ -45,7 +70,7 @@ for state in range(nstates):
         energy = splitEs[state]
         surfE.append(float(energy))
     surfEs.append(surfE)
-abinitEs = (np.array(abinitEs) + 256.787847331183)*219474.63067
+abinitEs = (np.array(abinitEs) + eshift)*219474.63067
 surfEs = np.array(surfEs)
 print("Finished reading energies")
 
@@ -126,11 +151,38 @@ print("Finished reading NACs")
 
 # analysis
 # energy
-print("\nRMS absolute energy error (rmsee):")
+nameset = ["C2vCI  ", "1min   ", "2min   ", "SD2-MEX", "1ts    ", "no critical point"]
 absEerr = surfEs - abinitEs
+for state in range(nstates):
+    Eerr = absEerr[state]
+    dEsq = np.dot(Eerr, Eerr)/len(Eerr)
+    dE = np.sqrt(dEsq)
+    print("\nRMS absolute energy error for state " + str(state + 1) + format(dE, "7.1f"))
+    ptset = [[], [], [], [], [], []]
+    for point in range(npoints):
+        if names[point][0] == "C":
+            ptset[0].append(Eerr[point])
+        elif names[point][0] == "G":
+            ptset[1].append(Eerr[point])
+        elif names[point][0] == "E":
+            ptset[2].append(Eerr[point])
+        elif names[point][0] == "S":
+            ptset[3].append(Eerr[point])
+        elif names[point][0] == "T":
+            ptset[4].append(Eerr[point])
+        else:
+            ptset[5].append(Eerr[point])
+    for ptgrp in range(len(nameset)):
+        if len(ptset[ptgrp]) > 0:
+            dEsq = np.dot(ptset[ptgrp], ptset[ptgrp])/len(ptset[ptgrp])
+            dE = np.sqrt(dEsq)
+            print("RMS absolute energy error for points near " + nameset[ptgrp] + format(dE, "7.1f"))
+
+# all energies
 flatEerr = np.ndarray.flatten(absEerr)
 dEsq = np.dot(flatEerr, flatEerr)/(npoints*nstates)
 dE = np.sqrt(dEsq)
+print("\nRMS absolute energy error (rmsee):")
 print("d[E] = " + str(dE))
 absabsE = abs(absEerr)
 mue = np.sum(absabsE)/(npoints*nstates)
@@ -189,6 +241,7 @@ for point in range(npoints):
 print(str(inc_cp) + " point/states included in coupling RMS analysis")
 
 # final calculations
+# gradients
 rmseg = np.sqrt(nrmgrad/inc_grad)
 mueg = avggrad/inc_grad
 print("\nRMS of relative errors of 2-norms of absolute vector difference (rmseg):")
