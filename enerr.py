@@ -17,8 +17,6 @@ nstates = 0
 h = open("fit.in", "r")
 fitin = h.readlines()
 h.close()
-enfDiab = 0
-natoms = 0
 for param in fitin:
     if "npoints" in param:
         npoints = int(param.split()[-1][:-1])
