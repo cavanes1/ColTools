@@ -1,6 +1,6 @@
 # parameters
-geoms_file = "eoms.txt" # Path to file with geometries
-init_dir = "S-FINAL" # Path to directory with Columbus already inputted
+geoms_file = "geoms.txt" # Path to file with geometries
+init_dir = "SD-FINAL" # Path to directory with Columbus already inputted
 parallel = True
 
 # module import
@@ -51,11 +51,11 @@ date""".format(name=directory))
 #SBATCH --account=dyarkon1
 #SBATCH -p defq
 #SBATCH -N 1
-#SBATCH -n 24
-#SBATCH -t 40:0:0
+#SBATCH -n 48
+#SBATCH -t 30:0:0
 set -e
 module list
-$COLUMBUS/runc -m 80000 -nproc 24 > runls
+$COLUMBUS/runc -m 160000 -nproc 48 > runls
 cp WORK/ciudg.perf .
 rm -r WORK
 sacct --name={name} --format="JobID,JobName,Elapsed,State"
