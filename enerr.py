@@ -1,4 +1,5 @@
-# parameter
+# parameters
+verbose = False
 degencutoff = 350 # cm-1
 
 # import modules
@@ -149,14 +150,14 @@ print("Finished reading NACs")
 
 # analysis
 # energy
-nameset = ["C2vCI  ", "1min   ", "2min   ", "SD2-MEX", "1ts    ", "no critical point"]
+nameset = ["C2vCI  ", "1min   ", "2min   ", "SD2-MEX", "1ts    ", "LSTpath", "I loop ", "J loop ", "no critical point"]
 absEerr = surfEs - abinitEs
 for state in range(nstates):
     Eerr = absEerr[state]
     dEsq = np.dot(Eerr, Eerr)/len(Eerr)
     dE = np.sqrt(dEsq)
     print("\nRMS absolute energy error for state " + str(state + 1) + format(dE, "7.1f"))
-    ptset = [[], [], [], [], [], []]
+    ptset = [[], [], [], [], [], [], [], [], []]
     for point in range(npoints):
         if names[point][0] == "C":
             ptset[0].append(Eerr[point])
@@ -168,8 +169,14 @@ for state in range(nstates):
             ptset[3].append(Eerr[point])
         elif names[point][0] == "T":
             ptset[4].append(Eerr[point])
-        else:
+        elif names[point][0] == "L":
             ptset[5].append(Eerr[point])
+        elif names[point][0] == "I":
+            ptset[6].append(Eerr[point])
+        elif names[point][0] == "J":
+            ptset[7].append(Eerr[point])
+        else:
+            ptset[8].append(Eerr[point])
     for ptgrp in range(len(nameset)):
         if len(ptset[ptgrp]) > 0:
             dEsq = np.dot(ptset[ptgrp], ptset[ptgrp])/len(ptset[ptgrp])
@@ -201,7 +208,7 @@ for point in range(npoints):
             nrmgrad += dgrd
             avggrad += np.sqrt(dgrd)
             inc_grad += 1
-        else:
+        elif verbose:
             print("Norm of grad = " + str(np.sqrt(gnrm)) + " Norm of error = " + str(np.sqrt(dgrd*gnrm)))
 print(str(inc_grad) + " point/states included in gradient RMS analysis\n")
 
@@ -234,7 +241,7 @@ for point in range(npoints):
                 dcp = np.dot(diff, diff)
                 ncp = np.dot(abinitC[statepair][point], abinitC[statepair][point])
                 nrmcp += (dcp/ncp)
-                if dcp > ((4e-2)*ncp):
+                if dcp > ((4e-2)*ncp) and verbose:
                     print("Large coupling error at pt" + str(point + 1) + " bkl" + str(k + 1) + str(l + 1) + ": " + str(np.sqrt(dcp/ncp)))
 print(str(inc_cp) + " point/states included in coupling RMS analysis")
 
