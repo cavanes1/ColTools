@@ -89,3 +89,10 @@ After running, one must replace names.all with names.new and run points.py.
 
 ### enerr.py
 Perform error analysis on the Hd surface.
+
+### gf.py
+Prepares the necessary data in order to perform a vibrational calculation using gf.x.
+This can be used with ab initio data as well.
+
+### ripgf.py
+If using ab intio data with gf.py, this program is used to calculate the Hessian after the ab intio data has finished calculating.
