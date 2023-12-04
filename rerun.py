@@ -16,6 +16,10 @@ alldistances.remove("ORIGIN")
 
 if resubmit:
     for distance in alldistances:
+        allfls = os.listdir("./" + distance)
+        if "runc.error" not in allfls:
+            print(distance + " is pending")
+            continue
         f = open("./" + distance + "/runc.error", "r")
         lines = f.readlines()
         f.close()
