@@ -1,4 +1,9 @@
+# required files
+#   The 2 geometries to be compared, in COLUMBUS Cartesian format
+#   If provided = True, intcfl in the directory this program is being run from
+
 # parameters
+provided = True
 init_cart_name = input("Name (or path) of initial Cartesian geometry file: ")
 final_cart_name = input("Name (or path) of final Cartesian geometry file: ")
 
@@ -47,42 +52,46 @@ if "G2" not in allitems:
     os.system("mkdir G2")
 os.system("cp " + final_cart_name + " G2/geom")
 
-# generate intcin
-conv = 0.529177211 # Angstroms per Bohr radii
-# initial geometry
-f = open("G1/intcin", "w")
-f.write("TEXAS\n")
-for atom in init_cart_data:
-    f.write("  " + atom[0]
-            + format(float(atom[1]), "17.5f")
-            + format(float(atom[2])*conv, "10.5f")
-            + format(float(atom[3])*conv, "10.5f")
-            + format(float(atom[4])*conv, "10.5f") + "\n")
-f.close()
-# final geometry
-f = open("G2/intcin", "w")
-f.write("TEXAS\n")
-for atom in final_cart_data:
-    f.write("  " + atom[0]
-            + format(float(atom[1]), "17.5f")
-            + format(float(atom[2])*conv, "10.5f")
-            + format(float(atom[3])*conv, "10.5f")
-            + format(float(atom[4])*conv, "10.5f") + "\n")
-f.close()
-print("intcin generated")
+if provided:
+    os.system("cp intcfl G1")
+    os.system("cp intcfl G2")
+else:
+    # generate intcin
+    conv = 0.529177211 # Angstroms per Bohr radii
+    # initial geometry
+    f = open("G1/intcin", "w")
+    f.write("TEXAS\n")
+    for atom in init_cart_data:
+        f.write("  " + atom[0]
+                + format(float(atom[1]), "17.5f")
+                + format(float(atom[2])*conv, "10.5f")
+                + format(float(atom[3])*conv, "10.5f")
+                + format(float(atom[4])*conv, "10.5f") + "\n")
+    f.close()
+    # final geometry
+    f = open("G2/intcin", "w")
+    f.write("TEXAS\n")
+    for atom in final_cart_data:
+        f.write("  " + atom[0]
+                + format(float(atom[1]), "17.5f")
+                + format(float(atom[2])*conv, "10.5f")
+                + format(float(atom[3])*conv, "10.5f")
+                + format(float(atom[4])*conv, "10.5f") + "\n")
+    f.close()
+    print("intcin generated")
 
-# run intc to generate intcfl
-# initial geometry
-rv = subprocess.run(["/home/cavanes1/col/Columbus/intc.x"],cwd="./G1",capture_output=True)
-print("G1 intc output:")
-print(rv.stdout.decode('utf8'))
-# final geometry
-rv = subprocess.run(["/home/cavanes1/col/Columbus/intc.x"],cwd="./G2",capture_output=True)
-print("G2 intc output:")
-print(rv.stdout.decode('utf8'))
-# ensure both directories have the same intcfl file for consistency
-os.system("mv G2/intcfl G2/intcflg2")
-os.system("cp G1/intcfl G2")
+    # run intc to generate intcfl
+    # initial geometry
+    rv = subprocess.run(["/home/cavanes1/col/Columbus/intc.x"],cwd="./G1",capture_output=True)
+    print("G1 intc output:")
+    print(rv.stdout.decode('utf8'))
+    # final geometry
+    rv = subprocess.run(["/home/cavanes1/col/Columbus/intc.x"],cwd="./G2",capture_output=True)
+    print("G2 intc output:")
+    print(rv.stdout.decode('utf8'))
+    # ensure both directories have the same intcfl file for consistency
+    os.system("mv G2/intcfl G2/intcflg2")
+    os.system("cp G1/intcfl G2")
 
 # generate internal coordinates from Cartesian coordinates
 # generate cart2intin
@@ -213,4 +222,4 @@ print("\nNormalized geometry difference vector for internal coordinates:")
 for coordinate in range(len(normed)):
     print("Coordinate " + str(coordinate + 1) + ": " + str(normed[coordinate]))
 intdist = np.linalg.norm(intdiff)
-print("Distance = " + str(intdist) + " (unknown units)")
+print("\nDistance = " + str(intdist) + " (unknown units)")

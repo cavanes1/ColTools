@@ -55,6 +55,19 @@ def coordprint(statei, statef):
             flag = "   !!!"
         else:
             flag = ""
+        # print out specific information regarding the irreducible representations
+        # tetrazolyl is used as an example in this commented-out code:
+        #if j + 1 == 1:
+        #    grp = "A1"
+        #elif j + 1 == 6:
+        #    grp = "A2"
+        #elif j + 1 == 7:
+        #    grp = "B1"
+        #elif j + 1 == 9:
+        #    grp = "B2"
+        #else:
+        #    grp = "  "
+        #print("   Coord  " + grp + format(j + 1, "3.0f") + ": " + format(comp[j], "7.3f") + flag)
         print("   Coordinate " + format(j + 1, "2.0f") + ": " + format(comp[j], "8.4f") + flag)
 
 # gradients

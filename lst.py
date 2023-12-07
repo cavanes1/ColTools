@@ -1,5 +1,10 @@
+# required files
+#   Both endpoint geometries, in COLUMBUS Cartesian format
+#   If provided = True, intcfl in the directory this program is being run from
+
 # parameters
 step = 0.5 # Step size
+provided = False
 init_cart_name = "0/geom" # Path of initial Cartesian geometry file
 final_cart_name = "geom" # Name of final Cartesian geometry file
 
@@ -33,39 +38,43 @@ if "FINAL" not in allitems:
     os.system("mkdir FINAL")
 os.system("cp " + final_cart_name + " FINAL/geom")
 
-# generate intcin
-conv = 0.529177211 # Angstroms per Bohr radii
-# initial geometry
-f = open("0/intcin", "w")
-f.write("TEXAS\n")
-for atom in init_cart_data:
-    f.write("  " + atom[0]
-            + format(float(atom[1]), "17.5f")
-            + format(float(atom[2])*conv, "10.5f")
-            + format(float(atom[3])*conv, "10.5f")
-            + format(float(atom[4])*conv, "10.5f") + "\n")
-f.close()
-# final geometry
-f = open("FINAL/intcin", "w")
-f.write("TEXAS\n")
-for atom in final_cart_data:
-    f.write("  " + atom[0]
-            + format(float(atom[1]), "17.5f")
-            + format(float(atom[2])*conv, "10.5f")
-            + format(float(atom[3])*conv, "10.5f")
-            + format(float(atom[4])*conv, "10.5f") + "\n")
-f.close()
-print("intcin generated")
+if provided:
+    os.system("cp intcfl 0")
+    os.system("cp intcfl FINAL")
+else:
+    # generate intcin
+    conv = 0.529177211 # Angstroms per Bohr radii
+    # initial geometry
+    f = open("0/intcin", "w")
+    f.write("TEXAS\n")
+    for atom in init_cart_data:
+        f.write("  " + atom[0]
+                + format(float(atom[1]), "17.5f")
+                + format(float(atom[2])*conv, "10.5f")
+                + format(float(atom[3])*conv, "10.5f")
+                + format(float(atom[4])*conv, "10.5f") + "\n")
+    f.close()
+    # final geometry
+    f = open("FINAL/intcin", "w")
+    f.write("TEXAS\n")
+    for atom in final_cart_data:
+        f.write("  " + atom[0]
+                + format(float(atom[1]), "17.5f")
+                + format(float(atom[2])*conv, "10.5f")
+                + format(float(atom[3])*conv, "10.5f")
+                + format(float(atom[4])*conv, "10.5f") + "\n")
+    f.close()
+    print("intcin generated")
 
-# run intc to generate intcfl
-# initial geometry
-rv = subprocess.run(["/home/cavanes1/col/Columbus/intc.x"],cwd="./0",capture_output=True)
-print("Initial intc output:")
-print(rv.stdout.decode('utf8'))
-# final geometry
-rv = subprocess.run(["/home/cavanes1/col/Columbus/intc.x"],cwd="./FINAL",capture_output=True)
-print("Final intc output:")
-print(rv.stdout.decode('utf8'))
+    # run intc to generate intcfl
+    # initial geometry
+    rv = subprocess.run(["/home/cavanes1/col/Columbus/intc.x"],cwd="./0",capture_output=True)
+    print("Initial intc output:")
+    print(rv.stdout.decode('utf8'))
+    # final geometry
+    rv = subprocess.run(["/home/cavanes1/col/Columbus/intc.x"],cwd="./FINAL",capture_output=True)
+    print("Final intc output:")
+    print(rv.stdout.decode('utf8'))
 
 # generate internal coordinates from Cartesian coordinates
 # generate cart2intin

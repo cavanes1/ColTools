@@ -1,4 +1,9 @@
+# required files
+#   The geometry to be analyzed, in COLUMBUS Cartesian format
+#   If provided = True, intcfl in the directory this program is being run from
+
 # parameters
+provided = False
 init_cart_name = input("Name (or path) of Cartesian geometry file: ")
 
 # module import
@@ -33,22 +38,25 @@ if "G1" not in allitems:
     os.system("mkdir G1")
 os.system("cp " + init_cart_name + " G1/geom")
 
-# generate intcin
-conv = 0.529177211 # Angstroms per Bohr radii
-f = open("G1/intcin", "w")
-f.write("TEXAS\n")
-for atom in init_cart_data:
-    f.write("  " + atom[0]
-            + format(float(atom[1]), "17.5f")
-            + format(float(atom[2])*conv, "10.5f")
-            + format(float(atom[3])*conv, "10.5f")
-            + format(float(atom[4])*conv, "10.5f") + "\n")
-f.close()
+if provided:
+    os.system("cp intcfl G1")
+else:
+    # generate intcin
+    conv = 0.529177211 # Angstroms per Bohr radii
+    f = open("G1/intcin", "w")
+    f.write("TEXAS\n")
+    for atom in init_cart_data:
+        f.write("  " + atom[0]
+                + format(float(atom[1]), "17.5f")
+                + format(float(atom[2])*conv, "10.5f")
+                + format(float(atom[3])*conv, "10.5f")
+                + format(float(atom[4])*conv, "10.5f") + "\n")
+    f.close()
 
-# run intc to generate intcfl
-rv = subprocess.run(["/home/cavanes1/col/Columbus/intc.x"],cwd="./G1",capture_output=True)
-print("G1 intc output:")
-print(rv.stdout.decode('utf8'))
+    # run intc to generate intcfl
+    rv = subprocess.run(["/home/cavanes1/col/Columbus/intc.x"],cwd="./G1",capture_output=True)
+    print("G1 intc output:")
+    print(rv.stdout.decode('utf8'))
 
 # generate internal coordinates from Cartesian coordinates
 # generate cart2intin
