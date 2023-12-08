@@ -1,6 +1,25 @@
 # ColTools
 This is a set of codes that work for any molecule while using COLUMBUS.
 
+### COLUMBUS JCL file
+
+```bash
+#!/bin/bash  
+#SBATCH --job-name={name}  
+#SBATCH -q regular  
+#SBATCH -c 1  
+#SBATCH -t 5:0:0  
+#SBATCH -C cpu  
+set -e  
+module list  
+module load python  
+module list  
+$COLUMBUS/runc > runls  
+rm -r WORK  
+sacct --name={name} --format="JobID,JobName,Elapsed,State"  
+date
+```
+
 ## Curve plots
 
 ### extractenergies.py
