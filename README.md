@@ -94,6 +94,9 @@ Also yields the point on the line closest to the given point not on the line.
 ### submit-in-a-row.sh
 Bash script that automatically submits the created jobs for a COLUMBUS vibrational calculation.
 
+### MOanalyzer.ipynb
+Can be used to analyze the difference in molecular orbitals between geometries. Requires modification to fit the specific molecule being analyzed.
+
 ### gradcomp.py
 Compares gradients and nonadiabatic couplings between two ab initio calculated points.
 
