@@ -1,5 +1,5 @@
 # ColTools
-This is a set of codes that work for any molecule while using COLUMBUS.
+This is a set of codes that can be used with COLUMBUS.
 
 ### COLUMBUS JCL file
 
@@ -30,6 +30,9 @@ Extracts MRCI energies and number of iterations to convergence from each subdire
 
 ### MCSCF.ipynb
 Example Jupyter notebook that generates a potential energy curve from extracted energy file.
+
+### clean.py
+Extracts and removes unnecessary files after ab initio calculations are performed along a path.
 
 ## Conical intersection search
 
@@ -86,10 +89,15 @@ All distances are the 2-norm.
 Calculates the shortest distance in 2-norm between a point from the line generated from two other points.
 Also yields the point on the line closest to the given point not on the line.
 
-## gradcomp.py
+## Other tools
+
+### submit-in-a-row.sh
+Bash script that automatically submits the created jobs for a COLUMBUS vibrational calculation.
+
+### gradcomp.py
 Compares gradients and nonadiabatic couplings between two ab initio calculated points.
 
-## geomkick.py
+### geomkick.py
 Takes an input file of internal coordinates and makes copies of a chosen directory with the geometry replaced with those in the input file.
 The last line of the input file must be "END".
 
@@ -101,6 +109,9 @@ Extracts the necessary data for Surfgen.
 ### points.py
 Identifies quasidegeneracies from energy.all to generate points.in.
 Designed with SurfgenBound 2023 in mind.
+
+### surfcurve.py
+Given two points, this generates geom.all with linear synchronous transit points and calculates a curve plot using dat.x.
 
 ### autosort.py
 Reorders the geometries used by Surfgen according to either an input list of names or automatically by absolute energy error.
