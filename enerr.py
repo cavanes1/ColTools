@@ -1,3 +1,5 @@
+# Prerequisite: Must run dat.x first
+
 # parameters
 verbose = False
 degencutoff = 350 # cm-1
