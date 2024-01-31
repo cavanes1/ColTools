@@ -103,29 +103,3 @@ Compares gradients and nonadiabatic couplings between two ab initio calculated p
 ### geomkick.py
 Takes an input file of internal coordinates and makes copies of a chosen directory with the geometry replaced with those in the input file.
 The last line of the input file must be "END".
-
-## Surfgen tools
-
-### surfextractor.pl
-Extracts the necessary data for Surfgen.
-
-### points.py
-Identifies quasidegeneracies from energy.all to generate points.in.
-Designed with SurfgenBound 2023 in mind.
-
-### surfcurve.py
-Given two points, this generates geom.all with linear synchronous transit points and calculates a curve plot using dat.x.
-
-### autosort.py
-Reorders the geometries used by Surfgen according to either an input list of names or automatically by absolute energy error.
-After running, one must replace names.all with names.new and run points.py.
-
-### enerr.py
-Perform error analysis on the Hd surface.
-
-### gf.py
-Prepares the necessary data in order to perform a vibrational calculation using gf.x.
-This can be used with ab initio data as well.
-
-### ripgf.py
-If using ab intio data with gf.py, this program is used to calculate the Hessian after the ab intio data has finished calculating.
