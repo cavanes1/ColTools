@@ -1,7 +1,7 @@
 # ColTools
-This is a set of codes that can be used with COLUMBUS.
+This is a set of codes that can be used with [COLUMBUS](https://columbus-program-system.gitlab.io/columbus/).
 
-### COLUMBUS JCL file
+### JCL file
 
 ```bash
 #!/bin/bash
