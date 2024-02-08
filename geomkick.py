@@ -35,7 +35,7 @@ def write_SLURM(directory):
         g.write("""#!/bin/bash
 #SBATCH --job-name={name}
 #SBATCH --account=dyarkon1
-#SBATCH -p defq
+#SBATCH -p shared
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -t 2:0:0
@@ -49,7 +49,7 @@ date""".format(name=directory))
         g.write("""#!/bin/bash
 #SBATCH --job-name={name}
 #SBATCH --account=dyarkon1
-#SBATCH -p defq
+#SBATCH -p parallel
 #SBATCH -N 1
 #SBATCH -n 48
 #SBATCH -t 30:0:0
