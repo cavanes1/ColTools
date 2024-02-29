@@ -103,3 +103,6 @@ Compares gradients and nonadiabatic couplings between two ab initio calculated p
 ### geomkick.py
 Takes an input file of internal coordinates and makes copies of a chosen directory with the geometry replaced with those in the input file.
 The last line of the input file must be "END".
+
+### moldenripper.py
+Converts molden.freq vibrational normal modes to Avogadro .xyz vector format that can be opened with Jmol.
