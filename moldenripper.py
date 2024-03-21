@@ -1,5 +1,6 @@
 # Required input file:    molden.freq
 # Generated output files: VIBS/*.xyz
+conv = 0.529177211 # conversion factor
 
 # module import
 import numpy as np
@@ -46,8 +47,8 @@ for i in range(len(viblines)):
     for atom in range(natoms):
         f.write(" " + format(geom[atom][0],"3s"))
         for j in range(3):
-            f.write(format(float(geom[atom][j + 1]),"13.6f"))
+            f.write(format(float(geom[atom][j + 1])*conv,"13.6f"))
         for j in range(3):
-            f.write(format(float(vibs[i][atom][j]),"13.6f"))
+            f.write(format(float(vibs[i][atom][j])*conv,"13.6f"))
         f.write("\n")
     f.close()
