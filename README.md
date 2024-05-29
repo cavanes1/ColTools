@@ -107,5 +107,5 @@ The last line of the input file must be "END".
 ### moldenripper.py
 Converts molden.freq vibrational normal modes to Avogadro .xyz vector format that can be opened with Jmol.
 
-### resubmit.py
+### rerun.py
 Resubmits failed COLUMBUS jobs.
