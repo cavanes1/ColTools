@@ -1,4 +1,4 @@
-\# PlaneDistorter
+# PlaneDistorter
 
 This code is similar to IterativeStretcher, but involves a different set of geometries.
 

@@ -1,4 +1,4 @@
-\# IterativeStretcher
+# IterativeStretcher
 
 This code replaces StretchExtractor.
 

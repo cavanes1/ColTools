@@ -1,4 +1,4 @@
-\# PhosphineStretcher
+# PhosphineStretcher
 
 This code is similar to MethanethiolStretcher, but is used to study phosphine (PH3) instead of methanethiol (CH3SH).
 

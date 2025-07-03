@@ -1,4 +1,4 @@
-\# MethanethiolStretcher
+# MethanethiolStretcher
 
 This code is similar to IterativeStretcher, but is used to study methanethiol (CH3SH) instead of methyl radical (CH3).
 

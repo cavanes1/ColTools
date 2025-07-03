@@ -1,4 +1,4 @@
-\# ThiiraneStretcher
+# ThiiraneStretcher
 
 This code is similar to PhosphineStretcher, but is used to study thiirane, also known as ethylene sulfide, instead of phosphine (PH3).
 

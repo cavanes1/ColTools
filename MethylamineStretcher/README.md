@@ -1,4 +1,4 @@
-\# MethylamineStretcher
+# MethylamineStretcher
 
 This code is similar to MethanethiolStretcher, but is used to study methylamine (CH3NH2) instead of methanethiol (CH3SH).
 

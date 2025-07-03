@@ -1,28 +1,28 @@
-\# TetrazolylTools
+# TetrazolylTools
 
 This is a group of codes that I have used in my research on the tetrazolyl neutral radical.
 
 
 
-\## Exclusives
+## Exclusives
 
 These tools are only in this directory and have not been generalized to all molecules
 
 
 
-\### surfcurve.py
+### surfcurve.py
 
 Given two points, this generates geom.all with linear synchronous transit points and calculates a curve plot using dat.x.
 
 
 
-\### stretching.py
+### stretching.py
 
 This moves a single atom along a single Cartesian unit vector.
 
 
 
-\### vec.py
+### vec.py
 
 Generates geometries in the direction of a given Cartesian vector.
 
@@ -34,47 +34,47 @@ A job is then submitted for each of the generated directories.
 
 
 
-\### Geometry rippers
+### Geometry rippers
 
 
 
-\* angxyz.py: Converts one COLUMBUS geometry file into .xyz format.
+* angxyz.py: Converts one COLUMBUS geometry file into .xyz format.
 
-\* allangxyz.py: Does this for all geometries in a GEOMS directory.
+* allangxyz.py: Does this for all geometries in a GEOMS directory.
 
-\* ghripper.py: Generates .xyz files with vectors included, one for each conical intersection search iteration of a polyhes listings file.
-
-
-
-\## Key inputs
+* ghripper.py: Generates .xyz files with vectors included, one for each conical intersection search iteration of a polyhes listings file.
 
 
 
-\### makscfky
+## Key inputs
+
+
+
+### makscfky
 
 This is the SCF key input. It describes 17 doubly-occupied orbitals and one open shell orbital.
 
 
 
-\### makmcky
+### makmcky
 
 This is the MCSCF key input. It describes 11 doubly-occupied orbitals and 9 complete active space orbitals.
 
 
 
-\### cidrtplky
+### cidrtplky
 
 This is the MRCI key input. It describes 5 frozen core orbitals, 6 doubly-occupied orbitals, and 9 complete active space orbitals.
 
 
 
-\### pscript.sh
+### pscript.sh
 
 This is a good parallel SLURM script input starting point. It is designed to run on the Rockfish cluster of ARCH.
 
 
 
-\## intcfl
+## intcfl
 
 C2v-symmetrized internal coordinate scheme.
 
